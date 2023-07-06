@@ -39,7 +39,7 @@ jobs:
           echo "final_tag=${{inputs.tag}}" >> $GITHUB_ENV
         fi 
 
-    - name: Vluid and Push the Image
+    - name: Build and Push the Image
       uses: docker/build-push-action@v2
       with:
         context: .
