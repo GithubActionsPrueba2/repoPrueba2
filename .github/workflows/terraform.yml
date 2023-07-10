@@ -20,6 +20,9 @@ jobs:
       PLAN_FILE: ${{ steps.terraform_plan.outputs.plan_file }}
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
