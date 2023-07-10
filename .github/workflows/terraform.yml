@@ -2,14 +2,13 @@ name: Deploy terraform init & plan . reusable
 
 on:
   workflow_call:
-    # inputs:
-    #   awsRegion:
-    #     required: true
-    #     type: string
-
-env:
-  ACCESS_KEY_AWS: ${{ secrets.ACCESS_KEY_AWS }}
-  SECRET_KEY_AWS: ${{ secrets.SECRET_KEY_AWS }}
+    inputs:
+      ACCESS_KEY_AWS:
+        required: true
+        type: string
+      SECRET_KEY_AWS:
+        required: true
+        type: string
 
 jobs:
   plan:
