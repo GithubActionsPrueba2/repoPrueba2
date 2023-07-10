@@ -6,6 +6,9 @@ on:
     #   awsRegion:
     #     required: true
     #     type: string
+    # secrets:
+
+      
 
 jobs:
   Verfication:
@@ -17,7 +20,7 @@ jobs:
 
       - name: Verificar Secrets
         run: |
-          if [[ -z "${{ secrets.SECRET_ONE }}" ]]; then
+          if [[ -z "${{ secrets.ACCESS_KEY_AWS }}" ]]; then
             echo "No se ha encontrado el secret SECRET_ONE"
             exit 1
           fi
