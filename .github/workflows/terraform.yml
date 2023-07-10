@@ -8,10 +8,8 @@ on:
     #     type: string
 
 jobs:
-  plan:
+  Verfication:
     runs-on: ubuntu-latest
-    outputs:
-      PLAN_FILE: ${{ steps.terraform_plan.outputs.plan_file }}
 
     steps:
       - name: Checkout Repository
@@ -31,8 +29,16 @@ jobs:
             echo "No se ha encontrado el secret SECRET_TWO"
             exit 1
           fi
-
           echo "Los secrets se han obtenido correctamente"
+
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      PLAN_FILE: ${{ steps.terraform_plan.outputs.plan_file }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2 
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
