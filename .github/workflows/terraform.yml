@@ -17,12 +17,12 @@ jobs:
 
       - name: Verificar Secrets
         run: |
-          if [[ -z ${{ secrets.ACCESS_KEY_AWS }} ]]; then
+          if [[ -z "${{ secrets.SECRET_ONE }}" ]]; then
             echo "No se ha encontrado el secret SECRET_ONE"
             exit 1
           fi
 
-          if [[ -z ${{ secrets.SECRET_KEY_AWS }} ]]; then
+          if [[ -z "${{ secrets.SECRET_KEY_AWS }}" ]]; then
             echo "No se ha encontrado el secret SECRET_TWO"
             exit 1
           fi
