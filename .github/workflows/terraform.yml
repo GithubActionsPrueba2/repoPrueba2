@@ -6,9 +6,11 @@ on:
     #   awsRegion:
     #     required: true
     #     type: string
-    # secrets:
-
-      
+    secrets:
+      access_key: 
+        required: true
+      secret_key: 
+        required: true
 
 jobs:
   Verfication:
@@ -17,19 +19,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-
-      - name: Verificar Secrets
-        run: |
-          if [[ -z "${{ secrets.ACCESS_KEY_AWS }}" ]]; then
-            echo "No se ha encontrado el secret SECRET_ONE"
-            exit 1
-          fi
-
-          if [[ -z "${{ secrets.SECRET_KEY_AWS }}" ]]; then
-            echo "No se ha encontrado el secret SECRET_TWO"
-            exit 1
-          fi
-          echo "Los secrets se han obtenido correctamente"
 
   plan:
     runs-on: ubuntu-latest
@@ -43,8 +32,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.ACCESS_KEY_AWS }}
-          aws-secret-access-key: ${{ secrets.SECRET_KEY_AWS }}
+          aws-access-key-id: ${{ secrets.access_key }}
+          aws-secret-access-key: ${{ secrets.secret_key }}
           aws-region: eu-west-3 #${{inputs.awsRegion}}
 
       - name: Terraform Init
