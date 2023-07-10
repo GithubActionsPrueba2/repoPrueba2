@@ -17,6 +17,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Verificar Secrets
+        env:
+          SECRET_ONE: ${{ secrets.ACCESS_KEY_AWS }}
+          SECRET_TWO: ${{ secrets.SECRET_KEY_AWS }}
+        run: |
+          if [[ -z "$SECRET_ONE" ]]; then
+            echo "No se ha encontrado el secret SECRET_ONE"
+            exit 1
+          fi
+
+          if [[ -z "$SECRET_TWO" ]]; then
+            echo "No se ha encontrado el secret SECRET_TWO"
+            exit 1
+          fi
+
+          echo "Los secrets se han obtenido correctamente"
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
