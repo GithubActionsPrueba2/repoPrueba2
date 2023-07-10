@@ -16,16 +16,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Verificar Secrets
-        env:
-          SECRET_ONE: ${{ secrets.ACCESS_KEY_AWS }}
-          SECRET_TWO: ${{ secrets.SECRET_KEY_AWS }}
         run: |
-          if [[ -z "$SECRET_ONE" ]]; then
+          if [[ -z ${{ secrets.ACCESS_KEY_AWS }} ]]; then
             echo "No se ha encontrado el secret SECRET_ONE"
             exit 1
           fi
 
-          if [[ -z "$SECRET_TWO" ]]; then
+          if [[ -z ${{ secrets.SECRET_KEY_AWS }} ]]; then
             echo "No se ha encontrado el secret SECRET_TWO"
             exit 1
           fi
